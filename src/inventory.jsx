@@ -4,7 +4,7 @@ import { tambahBarang, hapusBarang } from './inventorySlice';
 
 function Inventory() {
   const [namaBarang, setNamaBarang] = useState('')
-  const [jumlahBarang, setjumlahBarang] = useState('')
+  const [kuantitas, setKuantitas] = useState('')
 
   const dispatch = useDispatch()
   const listBarang = useSelector((state) => state.inventory.listBarang)
@@ -12,17 +12,17 @@ function Inventory() {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    if (namaBarang === '' || jumlahBarang === '') return
+    if (namaBarang === '' || kuantitas === '') return
 
     dispatch(
       tambahBarang({
         namaBarang: namaBarang,
-        jumlahBarang: Number(jumlahBarang),
+        kuantitas: Number(kuantitas),
       })
     )
 
     setNamaBarang('')
-    setjumlahBarang('')
+    setKuantitas('')
   }
 
   return (
@@ -40,8 +40,8 @@ function Inventory() {
         <input
           type="number"
           placeholder="Jumlah Barang"
-          value={jumlahBarang}
-          onChange={(e) => setjumlahBarang(e.target.value)}
+          value={kuantitas}
+          onChange={(e) => setKuantitas(e.target.value)}
         />
 
         <button type="submit">Tambah</button>
@@ -51,7 +51,7 @@ function Inventory() {
       <ul>
         {listBarang.map((item) => (
           <li key={item.id}>
-            {item.namaBarang} - {item.jumlahBarang}
+            {item.namaBarang} - {item.kuantitas}
             <button onClick={() => dispatch(hapusBarang(item.id))}>
               Hapus
             </button>

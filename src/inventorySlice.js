@@ -7,12 +7,12 @@ const inventorySlice = createSlice({
   initialState:{listBarang :[]},
   reducers: {
     tambahBarang: (state, action) => {
-      const { namaBarang, jumlahBarang } = action.payload
+      const { namaBarang, kuantitas } = action.payload
 
       state.listBarang.push({
         id: state.listBarang.length + 1,
         namaBarang,
-        jumlahBarang,
+        kuantitas,
       })
     },
 
